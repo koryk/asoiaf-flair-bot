@@ -9,13 +9,17 @@ import re
 import StringIO
 import csv
 import CsvUnicode
+import ConfigParser
 from pprint import pprint
 from urllib import quote_plus
 from string import maketrans
 
 reddit = "http://www.reddit.com"
-subreddit = "testasoiaf3"
-credentials = {'user': "ABotofTestandFail3", 'passwd': "HodorHodor3"}
+config = ConfigParser.ConfigParser()
+config.read("./config.ini")
+subreddit = config.get("user","subreddit") 
+pprint(subreddit)
+credentials = {'user': config.get("user","username"), 'passwd': config.get("user","passwd")}
 
 
 user_agent = "ASOIF Flair Bot"
