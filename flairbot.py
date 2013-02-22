@@ -411,7 +411,7 @@ Thanks for using A Bot of Ice and Fire!
 This message was sent by A Bot of Ice and Fire and cannot accept replies. If you have any comments, questions, or problems, please [message the maesters of r/asoiaf](http://www.reddit.com/message/compose?to=%2Fr%2Fasoiaf&amp;subject=Flair%20Issue).
 """
 
-tooLongFlairReply = """Our ravens canâ€™t carry messages that large.
+tooLongFlairReply = """Our ravens can't carry messages that large.
 
 Your requested flair text was too long. Please reduce the number of characters to below 40 and resubmit your request to A Bot of Ice and Fire.
 
@@ -443,15 +443,15 @@ If you believe that your desired flair text was erroneously caught in the filter
 This message was sent by A Bot of Ice and Fire and cannot accept replies. If you have any comments, questions, or problems, please [message the maesters of r/asoiaf](http://www.reddit.com/message/compose?to=%2Fr%2Fasoiaf&amp;subject=Flair%20Issue).
 """
 
-noShieldFlairReply = """Mâ€™lord,
+noShieldFlairReply = """M'lord,
 
 Sansa would have known whose heraldry you were requesting but much like Arya, I have never taken much interest in titles and sigils. Whenever Septa Mordane had gone on about the history of this house and that house, I was inclined to drift and dream and wonder when the lesson would be done.
 
-So, Iâ€™m sorry, mâ€™lord, I donâ€™t recognize that sigil.
+So, I'm sorry, m'lord, I don't recognize that sigil.
 
 Please try to choose your flair shield and text again. Remember not to alter the subject line in any way.
 
-If you find youâ€™re still having problems, please [send a raven to the maesters](http://www.reddit.com/message/compose?to=%2Fr%2Fasoiaf&amp;subject=Unrecognized%20Shield%20Problem).
+If you find you're still having problems, please [send a raven to the maesters](http://www.reddit.com/message/compose?to=%2Fr%2Fasoiaf&amp;subject=Unrecognized%20Shield%20Problem).
 
 
 ***
@@ -468,9 +468,9 @@ This message was sent by A Bot of Ice and Fire and cannot accept replies. If you
 
 """
 
-allCapsFlairReply = """Mâ€™lord,
+allCapsFlairReply = """M'lord,
 
-Your flair text should not sound like a rendition of *The Bear and the Maiden Fair*. That is, YOU SHOULDNâ€™T BE YELLING IT.
+Your flair text should not sound like a rendition of *The Bear and the Maiden Fair*. That is, YOU SHOULDN'T BE YELLING IT.
 
 Please resubmit your flair request without any title text in all caps for your change to go through successfully.
 
@@ -483,7 +483,7 @@ def hasBadWord(phrase, badWordList):
 
     strip_unicode = re.compile("[-. !@#%&=,/'\";:~`\$\^\*\(\)\+\[\]\{\}\|\?\<\>]")
     transPhrase = strip_unicode.sub('', phrase).lower()
-    pprint(transPhrase)
+    #pprint(transPhrase)
 
     for badWord in badWordList:
         transBadWord = strip_unicode.sub('', badWord).lower()
@@ -494,6 +494,8 @@ def hasBadWord(phrase, badWordList):
             return True
 
     return False
+def isCaps(phrase):
+    return phrase == phrase.upper();
 
 def encoded_dict(in_dict):
     out_dict = {}
@@ -573,6 +575,12 @@ def main():
                          'subject': "Shield and Title Not Updated -- Flair Rule Violation", 
                          'text': naughtyFlairReply}
 
+        elif isCaps(title):
+            print("%s all caps flair %s" % (user, title))
+            mailParms = {'to': user,    
+                         'uh': modhash,
+                         'subject': "Shield and Title Not Updated -- Flair Rule Violation", 
+                         'text': allCapsFlairReply}
         elif shield.lower() == "clear":
             print("%s cleared the title and shield" % (user))
             mailParms = {'to': user,    
