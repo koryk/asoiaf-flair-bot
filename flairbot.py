@@ -18,7 +18,6 @@ reddit = "http://www.reddit.com"
 config = ConfigParser.ConfigParser()
 config.read("./config.ini")
 subreddit = config.get("user","subreddit") 
-pprint(subreddit)
 credentials = {'user': config.get("user","username"), 'passwd': config.get("user","passwd")}
 
 
