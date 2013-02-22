@@ -392,7 +392,7 @@ flairs = {
     'duncanthetall': {'css_class': "DuncanTheTall"},                      
     'thebravecompanions': {'css_class': "TheBraveCompanions"},            
     }
-ughty = ["list of naughty words"]
+naughty = ["list of naughty words"]
 
 spoiler = ["List of spoiler words"]
 
