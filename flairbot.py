@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import json
-import badwords
 import urllib
 import urllib2
 import cookielib
@@ -14,6 +13,14 @@ import ConfigParser
 from pprint import pprint
 from urllib import quote_plus
 from string import maketrans
+
+try:
+    import badwords
+    naughty = badwords.naughty
+    spoiler = badwords.spoiler
+except ImportError:
+    naughty = []
+    spoiler = []
 
 reddit = "http://www.reddit.com"
 config = ConfigParser.ConfigParser()
@@ -396,10 +403,6 @@ flairs = {
     'duncanthetall': {'css_class': "DuncanTheTall"},                      
     'thebravecompanions': {'css_class': "TheBraveCompanions"},            
     }
-naughty = badwords.naughty
-
-spoiler = badwords.spoiler
-
 
 successFlairReply = """When you play the game of flair, you either win or you die.
 
