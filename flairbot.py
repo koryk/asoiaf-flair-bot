@@ -494,8 +494,9 @@ def hasBadWord(phrase, badWordList):
             return True
 
     return False
+
 def isCaps(phrase):
-    return phrase == phrase.upper();
+    return phrase == phrase.upper() and phrase != phrase.lower()
 
 def encoded_dict(in_dict):
     out_dict = {}
@@ -588,8 +589,6 @@ def main():
                          'subject': "Your Title and Shield Have Been Removed", 
                          'text': clearFlairReply}
             csvWriter.writerow([user,"",""])
-
-        # Todo: Add check for if the text is in all upper case. Send a message so that the user is informed.
 
         elif len(title) > 40:
             print("Message too long = %s, title = %s, shield = %s" % (user, title, shield))
