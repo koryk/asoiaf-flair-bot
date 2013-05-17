@@ -1,9 +1,8 @@
-approvalFlairReply = """The bot has found a possible spoiler flair
+approvalFlairReply = """The bot has found a possible spoiler flair    
+User: {0}    
+Flair Text: {1}    
 
-User: %s
-Flair Text: %s
-
-[approve](%s)
+[approve]({2})
 """
 
 successFlairReply = """When you play the game of flair, you either win or you die.

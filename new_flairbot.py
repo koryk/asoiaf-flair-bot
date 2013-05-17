@@ -39,7 +39,7 @@ def isModerator(user):
 
 def crawlMessages():
     for msg in r.get_unread(limit=None):
-        msg.mark_as_read()
+        #msg.mark_as_read()
         if (isModerator(msg.author)):
             if (handeModMessage(msg)):
                 r.send_message(msg.author, "Moderator Override Success " + msg.subject, flair_response.moderatorSuccess, None)
@@ -89,18 +89,20 @@ def handleMessage(msg):
     elif (hasBadWord(title, spoiler)):
         #send mod message
         r.send_message(msg.author, "Flair and Title Waiting for approval -- Possible Spoiler", flair_response.spoilerFlairReply , None)
-        r.send_message('dipotassium', "Flair needs approval", flair_response.approvalFlairReply.format(user, title, "http://www.reddit.com/message/compose?to="+urllib.quote(creds['user'])+"&subject="+urllib.quote(user.name+" "+msg.subject)+"&message="+urllib.quote(title))))
+        r.send_message('dipotassium', "Flair needs approval", flair_response.approvalFlairReply.format(user.name, title, "http://www.reddit.com/message/compose?to="+urllib.quote(creds['user'])+"&subject="+urllib.quote(user.name+" "+msg.subject)+"&message="+urllib.quote(title)))
         pprint("Flair is spoiler %s - %s - %s" % (user, title, shield))
     else:
-        r.send_message(msg.author, "Shield and Title Changed Successfully!", flair_response.successFlairReply  , None)
+        r.send_message(msg.author, "Shield and Title Changed Successfully!", flair_response.successFlairReply, None)
         print changeFlair(flair, title, user)
 
 def clearFlair(user):
     changeFlair('','',user)
 
 def changeFlair(flair, title, user):
-    r.set_flair(subreddit,user,title,flair)
-    return pformat("Changed flair %s - %s - %s" % (user, title, flair))
+    print flair['css_class']
+    print "Setting flair for " + user + " with the title " + title
+    r.set_flair(subreddit,user,title,flair['css_class'])
+    return pformat("Changed flair %s - %s - %s" % (user, title, flair['css_class']))
 
 def isCaps(phrase):
     return phrase == phrase.upper() and phrase != phrase.lower()
