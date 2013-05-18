@@ -39,7 +39,6 @@ def isModerator(user):
 
 def crawlMessages():
     for msg in r.get_unread(limit=None):
-        #msg.mark_as_read()
         if (isModerator(msg.author)):
             if (handeModMessage(msg)):
                 r.send_message(msg.author, "Moderator Override Success " + msg.subject, flair_response.moderatorSuccess, None)
@@ -47,6 +46,7 @@ def crawlMessages():
                 r.send_message(msg.author, "Moderator Override Failure " + msg.subject ,flair_response.moderatorFailure, None)
         else:
             handleMessage(msg)
+        msg.mark_as_read()
 
 def handeModMessage(msg):
     print "handling mod message"
@@ -93,14 +93,13 @@ def handleMessage(msg):
         pprint("Flair is spoiler %s - %s - %s" % (user, title, shield))
     else:
         r.send_message(msg.author, "Shield and Title Changed Successfully!", flair_response.successFlairReply, None)
-        print changeFlair(flair, title, user)
+        print changeFlair(flair, title, user.name)
 
 def clearFlair(user):
     changeFlair('','',user)
 
 def changeFlair(flair, title, user):
-    print flair['css_class']
-    print "Setting flair for " + user + " with the title " + title
+    print "Setting flair " + flair['css_class'] +  " for " + user + " with the title " + title
     r.set_flair(subreddit,user,title,flair['css_class'])
     return pformat("Changed flair %s - %s - %s" % (user, title, flair['css_class']))
 
