@@ -63,7 +63,7 @@ def handeModMessage(msg):
         return False
     else:
         if changeFlair(flair, title, user):
-        r.send_message(user, "Shield and Title Changed Successfully!", flair_response.successFlairReply  , None)
+            r.send_message(user, "Shield and Title Changed Successfully!", flair_response.successFlairReply  , None)
 
 def handleMessage(msg):
     shield = msg.subject.lower()
@@ -92,7 +92,7 @@ def handleMessage(msg):
         pprint("Flair is spoiler %s - %s - %s" % (user, title, shield))
     else:
         if changeFlair(flair, title, user.name):
-        r.send_message(msg.author, "Shield and Title Changed Successfully!", flair_response.successFlairReply, None)
+            r.send_message(msg.author, "Shield and Title Changed Successfully!", flair_response.successFlairReply, None)
 
 def clearFlair(user):
     changeFlair('','',user)
@@ -100,7 +100,7 @@ def clearFlair(user):
 def changeFlair(flair, title, user):
     current_flair =  r.get_flair(subreddit, user)
     if (current_flair['flair_css_class'] == flair['css_class'] and current_flair['flair_text'] == title):
-    print "Flair already set for " + user + " with the title " + title
+        print "Flair already set for " + user + " with the title " + title
         return False
     print "Setting flair " + flair['css_class'] +  " for " + user + " with the title " + title
     r.set_flair(subreddit,user,title,flair['css_class'])
