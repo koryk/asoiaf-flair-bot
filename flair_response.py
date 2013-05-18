@@ -25,7 +25,7 @@ Thank you!
 This message was sent by A Bot of Ice and Fire and cannot accept replies. If you have any comments, questions, or problems, please [message the maesters of r/asoiaf](http://www.reddit.com/message/compose?to=%2Fr%2Fasoiaf&amp;subject=Flair%20Issue).
 """
 
-spoilerFlairReply = """The old gods are strong with you, are you a greenseer? The maesters are against all dark magic and must be sure that your flair text is not from a future unseen by other men and women. The Maesters must approve your flair text before continuing.
+spoilerFlairReply = """The maesters are alarmed at the raven you sent. Are you a greenseer? Nevermind, we must convene before giving you your new title.
 
 Your flair text contains words that could indicate spoilers, so a message has been sent to the moderators to approve it, if you have any questions [send a raven to the maesters](http://www.reddit.com/message/compose?to=%2Fr%2Fasoiaf&amp;subject=Flair%20Filter%20Mistake).
 
