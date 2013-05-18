@@ -24,7 +24,6 @@ except ImportError:
     flairs = []
 
 moderators = []
-subreddit = 'testasoiaf'
 config = ConfigParser.ConfigParser()
 config.read("./config.ini")
 subreddit = config.get("user","subreddit") 
@@ -63,8 +62,8 @@ def handeModMessage(msg):
     elif (flair is None):
         return False
     else:
+        if changeFlair(flair, title, user):
         r.send_message(user, "Shield and Title Changed Successfully!", flair_response.successFlairReply  , None)
-        return changeFlair(flair, title, user)
 
 def handleMessage(msg):
     shield = msg.subject.lower()
@@ -78,7 +77,7 @@ def handleMessage(msg):
         pprint("Flair isn't recognized %s - %s - %s" % (user, title, shield))
         r.send_message(msg.author, "Flair and Title Not Updated -- Unrecognized Shield Name", flair_response.noShieldFlairReply , None)
     elif (len(title) > 40):
-        message = pformat("Flair is too long %s - %s -%s" % (user, title, shield))
+        pprint("Flair is too long %s - %s -%s" % (user, title, shield))
         r.send_message(msg.author, "Flair and Title Not Updated -- Flair is too long", flair_response.tooLongFlairReply , None)
     elif (hasBadWord(title,naughty)):
         pprint("Flair is naughty %s - %s - %s" % (user, title, shield))
@@ -89,16 +88,20 @@ def handleMessage(msg):
     elif (hasBadWord(title, spoiler)):
         #send mod message
         r.send_message(msg.author, "Flair and Title Waiting for approval -- Possible Spoiler", flair_response.spoilerFlairReply , None)
-        r.send_message('dipotassium', "Flair needs approval", flair_response.approvalFlairReply.format(user.name, title, "http://www.reddit.com/message/compose?to="+urllib.quote(creds['user'])+"&subject="+urllib.quote(user.name+" "+msg.subject)+"&message="+urllib.quote(title)))
+        r.send_message('/r/'+subreddit, "Flair needs approval", flair_response.approvalFlairReply.format(user.name, title, "http://www.reddit.com/message/compose?to="+urllib.quote(creds['user'])+"&subject="+urllib.quote(user.name+" "+msg.subject)+"&message="+urllib.quote(title)))
         pprint("Flair is spoiler %s - %s - %s" % (user, title, shield))
     else:
+        if changeFlair(flair, title, user.name):
         r.send_message(msg.author, "Shield and Title Changed Successfully!", flair_response.successFlairReply, None)
-        print changeFlair(flair, title, user.name)
 
 def clearFlair(user):
     changeFlair('','',user)
 
 def changeFlair(flair, title, user):
+    current_flair =  r.get_flair(subreddit, user)
+    if (current_flair['flair_css_class'] == flair['css_class'] and current_flair['flair_text'] == title):
+    print "Flair already set for " + user + " with the title " + title
+        return False
     print "Setting flair " + flair['css_class'] +  " for " + user + " with the title " + title
     r.set_flair(subreddit,user,title,flair['css_class'])
     return pformat("Changed flair %s - %s - %s" % (user, title, flair['css_class']))
