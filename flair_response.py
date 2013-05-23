@@ -27,7 +27,7 @@ This message was sent by A Bot of Ice and Fire and cannot accept replies. If you
 
 spoilerFlairReply = """The maesters are alarmed at the raven you sent. Are you a greenseer? Nevermind, we must convene before giving you your new title.
 
-Your flair text contains words that could indicate spoilers, so a message has been sent to the moderators to approve it, if you have any questions [send a raven to the maesters](http://www.reddit.com/message/compose?to=%2Fr%2Fasoiaf&amp;subject=Flair%20Filter%20Mistake).
+Your flair text contains words that could indicate spoilers, so a message has been sent to the moderators to approve it. If you have any questions [send a raven to the maesters](http://www.reddit.com/message/compose?to=%2Fr%2Fasoiaf&amp;subject=Flair%20Filter%20Mistake).
 
 ***
 This message was sent by A Bot of Ice and Fire and cannot accept replies. If you have any comments, questions, or problems, please [message the maesters of r/asoiaf](http://www.reddit.com/message/compose?to=%2Fr%2Fasoiaf&amp;subject=Flair%20Issue).
