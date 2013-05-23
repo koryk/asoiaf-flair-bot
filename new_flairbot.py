@@ -100,7 +100,7 @@ def clearFlair(user):
 def changeFlair(flair, title, user):
     current_flair =  r.get_flair(subreddit, user)
     
-    if (isdict(a) and current_flair['flair_css_class'] == flair['css_class'] and current_flair['flair_text'] == title):
+    if (isinstance(flair, dict) and current_flair['flair_css_class'] == flair['css_class'] and current_flair['flair_text'] == title):
         print "Flair already set for " + user + " with the title " + title
         return False
     elif flair == '':
