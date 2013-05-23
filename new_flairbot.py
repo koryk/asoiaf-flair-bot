@@ -99,13 +99,15 @@ def clearFlair(user):
 
 def changeFlair(flair, title, user):
     current_flair =  r.get_flair(subreddit, user)
-    if (flair != '' and current_flair['flair_css_class'] == flair['css_class'] and current_flair['flair_text'] == title):
+    
+    if (isdict(a) && current_flair['flair_css_class'] == flair['css_class'] and current_flair['flair_text'] == title):
         print "Flair already set for " + user + " with the title " + title
         return False
-    if flair == '':
-	    print "Clearing flair"
-    else: 
-	    print "Setting flair " + flair['css_class'] +  " for " + user + " with the title " + title
+    elif flair == '':
+        print "Clearing flair"
+        flair = {'css_class':''};
+    else:
+        print "Setting flair " + flair['css_class'] +  " for " + user + " with the title " + title
     r.set_flair(subreddit,user,title,flair['css_class'])
     return pformat("Changed flair %s - %s - %s" % (user, title, flair['css_class']))
 
