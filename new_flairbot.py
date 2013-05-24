@@ -38,7 +38,7 @@ def isModerator(user):
 
 def crawlMessages():
     for msg in r.get_unread(limit=None):
-        if (isModerator(msg.author) && msg.subject != 'Flair needs approval'):
+        if (isModerator(msg.author) and msg.subject != 'Flair needs approval'):
             if (handeModMessage(msg)):
                 r.send_message(msg.author, "Moderator Override Success " + msg.subject, flair_response.moderatorSuccess, None)
             else:
