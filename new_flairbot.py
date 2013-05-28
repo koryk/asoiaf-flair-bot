@@ -54,7 +54,7 @@ def handeModMessage(msg):
         #changing personal flair?
         return handleMessage(msg)
     user = title[0]
-    shield = title[1]
+    shield = title[1].lower()
     flair = flairs.get(shield, None)
     title = msg.body
     if (shield.lower() == 'clear'):
@@ -64,6 +64,7 @@ def handeModMessage(msg):
     else:
         if changeFlair(flair, title, user):
             r.send_message(user, "Shield and Title Changed Successfully!", flair_response.successFlairReply  , None)
+            return True;
 
 def handleMessage(msg):
     shield = msg.subject.lower()
