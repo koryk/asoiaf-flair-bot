@@ -67,10 +67,11 @@ def addApprovedFlair(flair):
         return
     approved_flair.append(flair)
     temp_flair_file = approved_flair_file + '.tmp'
-    with open(approved_flair_file) as old, open(temp_flair_file, 'w') as new:
-        for line in old:
-            new.write(line)
-        new.write(flair+"\n")
+    with open(approved_flair_file) as old:
+        with open(temp_flair_file, 'w') as new:
+            for line in old:
+                new.write(line)
+            new.write(flair+"\n")
     shutil.move(temp_flair_file, approved_flair_file)
 
 def isModerator(user):
